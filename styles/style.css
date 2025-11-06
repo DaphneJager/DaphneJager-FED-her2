@@ -1,0 +1,489 @@
+/**************/
+/* CSS REMEDY */
+/**************/
+*, *::after, *::before {
+  box-sizing:border-box;  
+  margin: 0;
+  padding: 0;
+}
+
+
+/*****************************************/
+/* FONTFACE Bron: oefenopdracht fontface */
+/*****************************************/
+
+@font-face {
+	font-family: 'twix';
+	src: url('../font/GoForGoldText.woff') format('woff');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'twix';
+	src: url('../font/GoforGoldDisplayCondensed.woff') format('woff');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'twix compressed';
+	src: url('../font/GoforGoldDisplayCompressed.woff') format('woff');
+	font-weight: 400;
+}
+
+
+/***********************************************************************************************************/
+/* H1 VERSTOPPEN Bron: [a11y project, hide content](https://www.a11yproject.com/posts/how-to-hide-content/)*/
+/***********************************************************************************************************/
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/**************************/
+/* PREFERS REDUCED MOTION */
+/**************************/
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+		transform: none !important;
+	}
+}
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+
+:root {
+	color-scheme: light dark;
+
+	--color-text-dark:#490F00;
+	--color-text-light: #ffff;
+	--color-text-black: #000;
+	--color-text-red: #E62B1E;
+
+	--background-header-dark: #E69D31;
+	--background-header-light: #EFC16D;
+	--background-recipies: #EAAC00;
+	--background-main: #490f00;
+	--background-section: #FFF0EB;
+	--footer-color: #E62B1E;
+
+	--button-color: #E62B1E;
+	--button-color-light: #fff;
+
+	--selection-color: #9f2060;
+	--selection-color-text: #75a0eb;
+	--stroke-color: #fff;
+	 
+	--background-darkmode-header: #490F00;
+	--background-darkmode-header2: #6d1a06;
+	--background-recipies-darkmode: #490F00;
+	--background-section-darkmode: #000;
+	--footer-color-darkmode: #490F00;
+	--stroke-color-darkmode: #490f00;
+
+	--background-header-gradient:
+		linear-gradient(
+			to right,
+			var(--background-header-dark),
+			var(--background-header-light),
+			var(--background-header-dark)
+		);
+}
+
+/**********/
+/*DARKMODE*/
+/**********/
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-header-gradient:
+			linear-gradient(
+				to right,
+				var(--background-darkmode-header),
+				var(--background-darkmode-header2),
+				var(--background-darkmode-header)
+			);
+		--background-section: var(--background-section-darkmode);
+		--color-text-light: var(--color-text-dark);
+		--color-text-dark: var(--color-text-light);
+		--footer-color: var(--footer-color-darkmode);
+		--background-recipies: var(--background-recipies-darkmode);
+		--stroke-color: var(--stroke-color-darkmode);
+	}
+}
+
+/*****************/
+/* BASIS STYLING */
+/*****************/
+
+/* FONTS */
+h1, h2, h3, h4, p, a, table {
+	font-family: 'twix', Arial, Helvetica, sans-serif;
+	font-weight: 700;
+}
+
+/* BUTTONS */
+button {
+	appearance: none;
+	font-family: 'twix', Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	transition: 1s;
+}
+
+button:hover {
+	cursor: pointer;	
+}
+
+/*************************************************************************************************************************/
+/* SELECTION COLORS en FOCUS STATE bron: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::selection*/
+/*************************************************************************************************************************/
+
+h1::selection,
+h2::selection, 
+h3::selection, 
+p::selection,
+a::selection {
+  color: var(--selection-color-text);
+  background-color: var(--selection-color);
+}
+
+a:focus-visible, 
+button:focus-visible {
+	border: solid 3px var(--button-color-light);
+	outline: none;
+	box-shadow: 0 0 0 5px var(--selection-color);
+}
+
+/***********************/
+/* HEADER groot scherm */
+/***********************/
+
+header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 5em;
+	background: var(--background-header-gradient);
+}
+
+header > a img { 
+	height: 5.5em;
+	width: 5.5em;
+	margin: 1em;
+}
+
+header nav ul li a:hover{
+	color: var(--color-text-red);
+}
+
+/* Bron: chatgpt. Prompt: welke filter waarden moet ik gebruiken om de image de kleur #E62B1E te geven  */
+nav ul li a:hover img {
+	filter: brightness(0) saturate(100%) invert(18%) sepia(88%) saturate(7460%) hue-rotate(358deg) brightness(101%) contrast(92%);
+	transition: 0.3s;
+}
+
+
+/**************/
+/* NAV BUTTON */
+/**************/
+
+/* nav button bron: Sanne in de les */
+header button {
+	display: grid;
+	justify-content: end;
+	align-content: center;
+	position: relative;
+	width: 3em;
+	top: .15em;
+	right: 1em;
+	font-size: 1em;
+	background: none;
+	z-index: 1;
+	appearance: none;
+	border: none;
+	aspect-ratio: 1;	
+}
+
+header button span{
+	display: block;
+	width: 1.5em;
+	height: .2em;
+	background-color: var(--button-color);
+	border-radius: .1em;
+	grid-column-start: 1;
+	grid-row-start: 1;
+}
+
+header button span:nth-of-type(1){
+	translate: 0 -.5em;
+}
+
+header button span:nth-of-type(3){
+	translate: 0 .5em;
+}
+
+header button.is-open span:nth-of-type(1){
+	translate: 0 0;
+	rotate: 45deg;
+}
+
+header button.is-open span:nth-of-type(2){
+	scale: 0 1;
+}
+
+header button.is-open span:nth-of-type(3){
+	translate: 0 0;
+	rotate: -45deg;
+}
+
+
+
+
+/********************/
+/* NAV groot scherm */
+/********************/
+
+header nav:nth-of-type(2){
+	display: block;
+	position: fixed;
+	top: 5em;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: var(--background-header-gradient);
+	translate: -100%;
+	z-index: 999;
+}
+
+header nav:nth-of-type(2).is-open{
+	translate: 0%;
+}
+
+header nav:nth-of-type(2) ul{
+	display:flex;
+	flex-direction: column;
+	list-style: none;
+}
+
+nav:nth-of-type(2) ul{
+	display: flex;
+	flex-direction: row-reverse
+}
+
+nav:nth-of-type(2) ul li{
+	align-self: flex-start;
+	padding: 1em;
+}
+
+nav:nth-of-type(2) ul li a{
+	font-size: 1em;
+	color: var(--color-text-dark);
+	text-decoration: none;
+}
+
+/************************************************************************************************/
+/* SKIP CONTENT LINK bron: https://www.w3schools.com/accessibility/accessibility_skip_links.php */
+/************************************************************************************************/
+
+header > a:first-of-type {
+	left: 50%;
+	position: absolute;
+	transform: translateY(-1000%);
+	transition: 0.3s;
+}
+
+header > a:first-of-type:focus {
+	transform: translateY(0%);
+}
+
+
+/***************************/
+/* NAV/HEADER KLEIN SCHERM */
+/***************************/
+
+@media (width > 1024px) {
+	/*HEADER klein scherm*/
+	header{
+		justify-content: start;
+		height: unset;
+	}
+
+	header > a img {
+		width: 14em;
+		margin: 1.5em;
+	}
+
+	/* NAV BUTTON bron: Sanne in de les */
+	header button {
+		display: none;
+	}
+
+
+	/* BOVENSTE NAV groot scherm */
+	nav:nth-of-type(1){
+		display: flex;
+		justify-content: end;
+		position: absolute;
+		right: .5em;
+		top: .5em;
+	}
+
+	nav:nth-of-type(1) img{
+		height: 1.5em;
+		width: 1.5em;
+		margin: 0;
+		order: -1;
+	}
+
+	nav:nth-of-type(1) ul{
+		display: flex;
+	}
+
+	nav:nth-of-type(1) ul li{
+		padding: .5em;
+		list-style-type: "";
+	}
+
+	nav:nth-of-type(1) ul li a{
+		display: flex;
+		color: var(--color-text-dark);
+		font-size: .8em;
+		text-decoration: none;
+	}
+
+	/* grote nav */
+	header nav:nth-of-type(2){
+		position: static;
+		translate: 0;
+		background: none;
+	}
+
+	header nav:nth-of-type(2) ul {
+		flex-direction: row;
+	}
+
+	header nav ul li a{
+		color: var(--color-text-dark);
+		text-decoration: none;
+		list-style-type: none;
+	}	
+}
+
+
+/**********/
+/* FOOTER */
+/**********/
+
+footer li {
+	margin-top: .5em;
+	padding: 1em;
+	list-style-type: none;
+	text-decoration: underline;
+}
+
+footer p{
+	font-weight: 100;
+	margin: 1em;
+}
+
+footer img {
+	width: 5em;
+	height: 5em;
+	margin: 1em 1em 0;
+}
+
+footer h2 {
+	font-size: large;
+	padding: 1em;
+}
+
+/* select region button */
+footer section section:nth-of-type(2) button {
+	width: 90%;
+	height: 4em;
+	padding-left: 1.2em;
+	background-color: var(--button-color-light);
+	color: var(--color-text-black);
+	margin: 1em;
+	border: none;
+	border-radius: .5em;
+	text-align: left;
+	font-weight: 100;
+	font-size: 1em;
+}
+
+footer > section:nth-of-type(1) {
+	color: var(--color-text-dark);
+	background: var(--background-header-gradient);
+}
+
+footer > section:nth-of-type(1) a {
+	padding: 0 1em 1em 0;
+	color: var(--color-text-dark);
+	text-decoration: none;
+}
+
+footer > section:nth-of-type(1) li {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+footer > section:nth-of-type(1) a:hover {
+	color: var(--button-color);
+}
+
+footer section:nth-of-type(2),
+footer section:nth-of-type(3) {
+	color: var(--color-text-light);
+	background-color: var(--footer-color);
+}
+
+footer section:nth-of-type(2) a {
+	color: var(--color-text-light);
+	text-decoration: none;
+}
+
+/* Lijst socials */
+footer section section:nth-of-type(1) li a {
+	font-size: .8em;
+
+}
+
+/* Lijst legal links */
+footer section section:nth-of-type(2) li a {
+	font-weight: 100;
+}
+
+footer section section:nth-of-type(2) ul {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	font-weight: 100;
+}
+
+
+/* Button onderaan */
+
+footer section section:nth-of-type(3) button {
+	height: 4em;
+	padding: .8em 2.5em;
+	margin: 1em;
+	color: var(--color-text-light);
+	background-color: var(--button-color);
+	border: solid .2em;
+	border-color: var(--color-text-light);
+	border-radius: .5em;
+	font-size: 1em;
+}

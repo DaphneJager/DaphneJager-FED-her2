@@ -1,0 +1,300 @@
+/**************/
+/* CSS REMEDY */
+/**************/
+
+/**************/
+/*     MAIN   */
+/**************/
+main{
+	background-color: var(--background-main);
+}
+
+main section{
+	background-color: var(--background-section);
+}
+
+main h2{
+    text-align: center;
+    color: var(--color-text-dark);
+}
+
+main section:nth-of-type(3) h2{
+    color: var(--color-text-light);
+}
+
+main h3{
+    color: var(--color-text-dark);
+}
+
+
+/*************************************************/
+/* CAROUSEL bovenaan bron: carousel oefening les */
+/*************************************************/
+
+main section:nth-of-type(2) ul {
+	display: flex;
+    list-style-type: "";
+    overflow-x: auto;
+    overflow-y: hidden;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	overscroll-behavior-x: contain;
+}
+
+main section:nth-of-type(2) ul li {
+	height: 20em;
+    flex-basis:100%;
+  	flex-shrink: 0;
+  	scroll-snap-align: center;
+}
+
+main section:nth-of-type(2) ul li img {
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*************************************************/
+/* Scroll bolletjes Brond: lesopdracht caroussel */
+/*************************************************/
+
+@media (width > 10em) {
+  main section:nth-of-type(2) ul {
+    /* geen scrollbar */
+    scrollbar-width: none;
+    scroll-marker-group: after;
+  }
+
+  main section:nth-of-type(2) ul::scroll-marker-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    row-gap: .25em;
+    column-gap: .5em;
+  }
+
+  main section:nth-of-type(2) li::scroll-marker {
+    content: '' / 'naar' attr(data-label);
+    /* styling bolletje */
+    width: 1em;
+    margin-bottom: 2.5em;
+    background-color: var(--button-color-light);
+    border-radius: 50%;
+    transition: .25s;
+    aspect-ratio: 1;
+  }
+
+  main section:nth-of-type(2) li::scroll-marker:target-current {
+    background: var(--button-color);
+  }
+}
+
+/*****************************************************/
+/* previous/next buttons Brond: lesopdracht caroussel*/
+/*****************************************************/
+
+main section:nth-of-type(2) ul{
+    &::scroll-button(*) {
+    /* styling buttons */
+    width: 3em;
+    aspect-ratio: 1;
+    margin: 1em 0 0;
+    padding: 0;
+    color: var(--button-color);
+    background-color: var(--button-color-light);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1em;
+    
+    /* Buttons positie */
+    position: absolute;
+    top: 25%;
+    }
+
+    &::scroll-button(right) {
+    content: '→' / 'Next';
+    right: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    &::scroll-button(left) {
+    content: '←' / 'Previous';
+    left: clamp(1.5rem, 5vw, 2rem);
+    }
+    
+    &::scroll-button(*):disabled {
+    opacity: .5;
+    }
+}
+
+
+
+
+
+
+
+/******************************/
+/* SECTIE DONKERE ACHTERGROND */
+/******************************/
+
+main section:nth-child(3) {
+    background-color: var(--background-main);
+    text-align: left;
+}
+
+main section:nth-child(3) p {
+    color: var(--color-text-light);
+    padding: 1em;
+    font-size: 2em;
+}
+
+main section:nth-child(3) img{
+    display: flex;
+	justify-self: center;
+    padding: 3em;
+    max-width: 100%;
+}
+
+/* button sectie donkere achtergrond */
+main section:nth-child(3) button{
+	width: 10em;
+    margin: 2em;
+    padding: 1em 1.5em;
+    color: var(--color-text-light);
+    background-color: var(--button-color);
+	border: none;
+	border-radius: .5em;
+    cursor: pointer;
+}
+
+
+/*****************************/
+/* SECTIE LICHTE ACHTERGROND */
+/*****************************/
+
+main section:nth-child(4) h2 {
+    font-family: 'twix compressed', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 3em;
+    text-align: center;
+}
+
+main section:nth-child(4) li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main section:nth-child(4) li img {
+    max-width: 80%;
+    transition: 1s;
+    order: -10;
+}
+
+main section:nth-child(4) li img:hover {
+    transform: scale(1.1);
+}
+
+main section:nth-child(4) li h3 {
+    font-size: 1.3em;
+}
+
+/* buttons sectie lichter achtergrond */
+main section:nth-child(4) li button{
+	width: 10em;
+    margin: 2em;
+    padding: 1em 1.5em;
+    color: var(--color-text-light);
+    background-color: var(--button-color);
+    border: none;
+	border-radius: .5em;
+    cursor: pointer;
+}
+
+/***************/
+/* FOTO BANNER */
+/***************/
+
+main section:nth-of-type(5){
+    max-height: 40em;
+}
+
+main section:nth-of-type(5) img {
+    width: 100%;
+    max-height: 40em;
+    object-fit: cover;
+}
+
+/*********************/
+/* CAROUSEL onderaan */
+/*********************/
+
+main section:nth-of-type(6) ul {
+	display: flex;
+    justify-content: space-around;
+    list-style-type: "";
+	overflow: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	overscroll-behavior-x: contain;
+	scrollbar-width: none;
+}
+
+main section:nth-of-type(6) ul li {
+  	flex-shrink: 0;
+  	scroll-snap-align: center;
+}
+
+main section:nth-of-type(6) ul li img {
+	width: 15em;
+    padding: 2em;
+    border-radius: 3em;
+}
+
+/* carousel knoppen */
+main section:last-of-type ul{
+    &::scroll-button(*) {
+    /* styling buttons */
+    width: 3em;
+    aspect-ratio: 1;
+    margin: 1em 0 0 26vw;
+    padding: 0;
+    color: var(--button-color);
+    background-color: var(--button-color-light);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1em;
+    }
+
+    &::scroll-button(right) {
+    content: '→' / 'Next';
+    right:clamp(1.5rem, 5vw, 2rem);
+    }
+
+    &::scroll-button(left) {
+    content: '←' / 'Previous';
+    left:clamp(1.5rem, 5vw, 2rem);
+    }
+    
+    &::scroll-button(*):disabled {
+    opacity:.5;
+    }
+}
+
+/* knoppen weg op groot scherm */
+@media (width > 731px) {
+  main section:last-of-type ul {
+    &::scroll-button(*) {
+      display: none;
+    }
+  }
+}
+
+
+
+
+
+
